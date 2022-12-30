@@ -1,6 +1,11 @@
 inherit_from:
   - .rubocop_airbnb.yml
 
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
 #rubocopで検証しないフォルダ
 AllCops:
   Exclude:
