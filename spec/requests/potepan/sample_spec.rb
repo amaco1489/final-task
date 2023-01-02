@@ -1,12 +1,12 @@
 require 'rails_helper'
 require 'spree/testing_support/factories'
 
-RSpec.describe "Potepan::Products", type: :request do
+RSpec.describe "Potepan::Sample", type: :request do
   let!(:product) { create(:product) }
 
-  describe "GET #show" do
+  describe "GET #index" do
     it "returns http success" do
-      get potepan_product_path(product.id)
+      get potepan_index_path
       expect(response).to have_http_status(:success)
     end
   end
