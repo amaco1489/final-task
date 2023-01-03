@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spree/testing_support/factories'
 
 RSpec.describe "Potepan::Sample", type: :request do
   let!(:product) { create(:product) }
