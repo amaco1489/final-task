@@ -55,4 +55,3 @@ production:
   username: potepanec
   password: <%= ENV['POTEPANEC_DATABASE_PASSWORD'] %>
   url: <%= ENV['JAWSDB_URL']&.sub('mysql://', 'mysql2://') %>
-  
