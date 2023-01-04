@@ -8,8 +8,11 @@ RSpec.describe "Potepan::Products", type: :system do
       visit potepan_product_path(product.id)
     end
 
+    it "タイトルが動的に表示されているか" do
+      expect(title).to eq product.name + " - BIGBAG Store"
+    end
+
     it "商品情報が表示されているか" do
-      expect(page).to have_title product.name
       expect(page).to have_content product.name
       expect(page).to have_content product.display_price
       expect(page).to have_content product.description
@@ -28,6 +31,16 @@ RSpec.describe "Potepan::Products", type: :system do
     it "lightSectionのHomeボタンからtopページへ遷移できるか" do
       click_on "light-section-home-btn"
       expect(current_path).to eq potepan_index_path
+    end
+  end
+
+  describe "GET #index" do
+    before do
+      visit potepan_index_path
+    end
+
+    it "タイトルがストア名のみで表示されているか" do
+      expect(title).to eq "BIGBAG Store"
     end
   end
 end

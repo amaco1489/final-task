@@ -1,6 +1,4 @@
-<!-- HEADER -->
 <div class="header clearfix">
-  <!-- TOPBAR -->
   <div class="topBar">
     <div class="container">
       <div class="row">
@@ -18,8 +16,7 @@
                 <form id="form01" action="product-grid-left-sidebar.html" method="post">
                   <li>
                     <span class="input-group">
-                      <input type="text" name="searchWord" class="form-control" placeholder="Search…"
-                        aria-describedby="basic-addon2">
+                      <input type="text" name="searchWord" class="form-control" placeholder="Search…" aria-describedby="basic-addon2">
                       <span onclick="FormSubmit();" class="input-group-addon addPointer" id="basic-addon2">検索</span>
                     </span>
                   </li>
@@ -27,18 +24,17 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="cart-page.html" class="dropdown-toggle" data-toggle="dropdown disabled"><i
-                  class="fa fa-shopping-cart"></i></a>
+              <%= link_to potepan_cart_page_path, class:"dropdown-toggle", "data-toggle": :"dropdown disabled" do %>
+                <i class="fa fa-shopping-cart"></i>
+              <% end %>
             </li>
           </ul>
         </div>
       </div>
     </div>
   </div>  
-  <!-- NAVBAR -->
   <nav class="navbar navbar-main navbar-default" role="navigation">
     <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
           <span class="sr-only">Toggle navigation</span>
@@ -48,7 +44,6 @@
         </button>
         <%= link_to image_tag("img/logo.png", :alt=> "ロゴ", class:"navbar-brand"), potepan_index_path %>
       </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li class=<%= "active" if current_page?(potepan_index_path) %>><%= link_to "Home", potepan_index_path, id:"header-home-btn" %></li>
@@ -57,7 +52,7 @@
               data-delay="300" data-close-others="true" aria-expanded="false">Shop</a>
           </li>
         </ul>
-      </div><!-- /.navbar-collapse -->
+      </div>
     </div>
   </nav>
 </div>
