@@ -9,7 +9,7 @@ RSpec.describe "Potepan::Products", type: :system do
     end
 
     it "タイトルが動的に表示されているか" do
-      expect(title).to eq product.name + " - BIGBAG Store"
+      expect(title).to eq "#{product.name} - BIGBAG Store"
     end
 
     it "商品情報が表示されているか" do
