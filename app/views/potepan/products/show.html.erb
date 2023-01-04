@@ -10,7 +10,7 @@
       <div class="col-xs-6">
         <ol class="breadcrumb pull-right">
           <li>
-            <%= link_to "Home", potepan_index_path, id:"light-section-home-btn" %>
+            <%= link_to "Home", potepan_index_path %>
           </li>
           <li class="active"><%= @product.name %></li>
         </ol>
@@ -27,9 +27,9 @@
             <div id="carousel" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">                   
                 <% @images.each_with_index do |image, i| %>
-                <div class="item <%= "active" if i.zero? %>" data-thumb = <%= i %>>
-                  <%= image_tag image.attachment.url %>
-                </div>
+                  <div class="item <%= "active" if i.zero? %>" data-thumb = <%= i %>>
+                    <%= image_tag image.attachment.url %>
+                  </div>
                 <% end %>                    
               </div>
             </div>

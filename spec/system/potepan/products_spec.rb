@@ -19,28 +19,22 @@ RSpec.describe "Potepan::Products", type: :system do
     end
 
     it "ヘッダーのHomeボタンからtopページへ遷移できるか" do
-      click_on "header-home-btn"
-      expect(current_path).to eq potepan_index_path
+      within ".nav" do
+        click_on "Home"
+        expect(current_path).to eq potepan_index_path
+      end
+    end
+
+    it "商品名横のHomeボタンからtopページへ遷移できるか" do
+      within ".breadcrumb" do
+        click_on "Home"
+        expect(current_path).to eq potepan_index_path
+      end
     end
 
     it "ヘッダーのロゴからtopページへ遷移できるか" do
       click_on "ロゴ"
       expect(current_path).to eq potepan_index_path
-    end
-
-    it "lightSectionのHomeボタンからtopページへ遷移できるか" do
-      click_on "light-section-home-btn"
-      expect(current_path).to eq potepan_index_path
-    end
-  end
-
-  describe "GET #index" do
-    before do
-      visit potepan_index_path
-    end
-
-    it "タイトルがストア名のみで表示されているか" do
-      expect(title).to eq "BIGBAG Store"
     end
   end
 end

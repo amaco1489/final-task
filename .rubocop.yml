@@ -17,4 +17,3 @@ AllCops:
     - 'db/**/*'
     - 'lib/tasks/*'
     - 'vendor/**/*'
-
