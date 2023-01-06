@@ -9,13 +9,13 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
 
     context "page_titleが空白の場合" do
-      it "動的なタイトルになること" do
+      it "タイトルがストア名のみになること" do
         expect(full_page_title("")).to eq "BIGBAG Store"
       end
     end
 
     context "page_titleが存在しない場合" do
-      it "動的なタイトルになること" do
+      it "タイトルがストア名のみになること" do
         expect(full_page_title(nil)).to eq "BIGBAG Store"
       end
     end

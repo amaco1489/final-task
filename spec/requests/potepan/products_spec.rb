@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Potepan::Products", type: :request do
-  let!(:product) { create(:product) }
+  let(:product) { create(:product) }
 
   describe "GET #show" do
     it "正常なレスポンスが返されること" do
