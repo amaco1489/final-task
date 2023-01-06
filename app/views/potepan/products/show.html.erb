@@ -1,5 +1,5 @@
 <% content_for(:title, @product.name) %>
-<%= render "shared/page_header" %>
+<%= render "shared/page_header", product: @product %>
 <section class="mainContent clearfix">
   <div class="container">    
     <div class="row singleProduct">
@@ -61,7 +61,7 @@
             </span>
             <div class="btn-area">
               <%= link_to potepan_cart_page_path, class:"btn btn-primary btn-block" do %>
-                カートへいれる<i class="fa fa-angle-right" aria-hidden="true"></i>
+                カートへ入れる<i class="fa fa-angle-right" aria-hidden="true"></i>
               <% end %>
             </div>
           </div>
