@@ -6,7 +6,6 @@ require:
   - rubocop-rails
   - rubocop-rspec
 
-#rubocopで検証しないフォルダ
 AllCops:
   Exclude:
     - 'bin/*'
