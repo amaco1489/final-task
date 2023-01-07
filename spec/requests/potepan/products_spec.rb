@@ -6,7 +6,7 @@ RSpec.describe "Potepan::Products", type: :request do
     let(:image) { create(:image) }
     # 画像URLの取得が上手くいかない問題への対応
     # https://mng-camp.potepan.com/curriculums/document-for-final-task-2#notes-of-image-test
-    let(:filename) do
+    let(:product_image_filename) do
       filename = image.attachment_blob.filename
       "#{filename.base}#{filename.extension_with_delimiter}"
     end
@@ -24,7 +24,7 @@ RSpec.describe "Potepan::Products", type: :request do
       expect(response.body).to include product.name
       expect(response.body).to include product.display_price.to_s
       expect(response.body).to include product.description
-      expect(response.body).to include filename
+      expect(response.body).to include product_image_filename
     end
   end
 end

@@ -6,7 +6,7 @@ RSpec.describe "Potepan::Products", type: :system do
     let(:image) { create(:image) }
     # 画像URLの取得が上手くいかない問題への対応
     # https://mng-camp.potepan.com/curriculums/document-for-final-task-2#notes-of-image-test
-    let(:filename) do
+    let(:product_image_filename) do
       filename = image.attachment_blob.filename
       "#{filename.base}#{filename.extension_with_delimiter}"
     end
@@ -29,13 +29,13 @@ RSpec.describe "Potepan::Products", type: :system do
 
     it "商品画像(大)のファイル名が含まれていること" do
       within first(".carousel-inner") do
-        expect(page).to have_selector "img[src$='#{filename}']"
+        expect(page).to have_selector "img[src$='#{product_image_filename}']"
       end
     end
 
     it "商品画像(小)のファイル名が含まれていること" do
       within "#thumbcarousel" do
-        expect(page).to have_selector "img[src$='#{filename}']"
+        expect(page).to have_selector "img[src$='#{product_image_filename}']"
       end
     end
 
