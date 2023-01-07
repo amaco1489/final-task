@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Potepanec</title>
+    <title><%= full_page_title(yield(:title)) %></title> 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag "application", 'https://fonts.googleapis.com/css?family=Oxygen:400,300,700', :media => "all" %>
   </head>
-
   <body>
+    <%= render "shared/header" %>
     <%= yield %>
+    <%= render "shared/footer" %>
+    <%= javascript_include_tag 'application' %>
   </body>
 </html>

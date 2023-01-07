@@ -1,0 +1,18 @@
+inherit_from:
+  - .rubocop_airbnb.yml
+
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - 'bin/*'
+    - 'config/environments/*'
+    - 'config/initializers/*'
+    - 'config/application.rb'
+    - 'config/spring.rb'
+    - 'db/**/*'
+    - 'lib/tasks/*'
+    - 'vendor/**/*'

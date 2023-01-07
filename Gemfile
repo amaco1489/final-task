@@ -36,7 +36,6 @@ gem 'solidus', '~> 2.11.0'
 gem 'solidus_auth_devise'
 gem 'solidus_i18n', github: 'solidusio-contrib/solidus_i18n', branch: 'master'
 gem 'paypalhttp', '~> 1.0'
-gem 'solidus_auth_devise'
 gem 'solidus_paypal_commerce_platform'
 
 group :development, :test do
@@ -44,11 +43,17 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'capybara'
   gem 'pry-rails'
   gem 'pry-doc'
   gem 'pry-byebug'
   gem 'rails-erd'
   gem 'annotate'
+  gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop-airbnb'
 end
 
 group :development do
