@@ -1,37 +1,17 @@
 <% content_for(:title, @taxon.name)%>
-<section class="lightSection clearfix pageHeader">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-6">
-        <div class="page-title">
-          <h2><%= @taxon.name %></h2>
-        </div>
-      </div>
-      <div class="col-xs-6">
-        <ol class="breadcrumb pull-right">
-          <li>
-            <%= link_to "Home", potepan_index_path %>
-          </li>
-          <li>
-            <a href="#">shop</a>
-          </li>
-          <li class="active"><%= @taxon.name %></li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</section>
-
+<%= render "shared/page_header", sub_title: @taxon.name %>
 <!-- MAIN CONTENT SECTION -->
 <section class="mainContent clearfix productsContent">
   <div class="container">
     <div class="row">
       <div class="col-md-3 col-sm-4 col-xs-12 sideBar">
+
         <div class="panel panel-default">
           <div class="panel-heading">商品カテゴリー</div>
           <div class="panel-body">
             <div class="collapse navbar-collapse navbar-ex1-collapse navbar-side-collapse">
               <ul class="nav navbar-nav side-nav">
+                
                 <li>
                   <a href="javascript:;" data-toggle="collapse" data-target="#women">レディース<i class="fa fa-plus"></i></a>
                   <ul id="women" class="collapse collapseItem">
@@ -41,6 +21,7 @@
                     <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>靴 <span>(2)</span></a></li>
                   </ul>
                 </li>
+
                 <li>
                   <a href="javascript:;" data-toggle="collapse" data-target="#men">メンズ<i class="fa fa-plus"></i></a>
                   <ul id="men" class="collapse collapseItem">
@@ -50,24 +31,7 @@
                     <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>靴 <span>(2)</span></a></li>
                   </ul>
                 </li>
-                <li>
-                  <a href="javascript:;" data-toggle="collapse" data-target="#kids">キッズ<i class="fa fa-plus"></i></a>
-                  <ul id="kids" class="collapse collapseItem">
-                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>トップス <span>(6)</span></a></li>
-                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>アウター <span>(6)</span></a></li>
-                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>ボトムス <span>(25)</span></a></li>
-                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>靴 <span>(2)</span></a></li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="javascript:;" data-toggle="collapse" data-target="#accessories">アクセサリー<i class="fa fa-plus"></i></a>
-                  <ul id="accessories" class="collapse collapseItem">
-                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>モバイルケース・アクセサリー <span>(6)</span></a></li>
-                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>財布・革小物 <span>(6)</span></a></li>
-                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>腕時計 <span>(25)</span></a></li>
-                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>帽子 <span>(2)</span></a></li>
-                  </ul>
-                </li>
+        
               </ul>
             </div>
           </div>
@@ -97,6 +61,7 @@
           </div>
         </div>
       </div>
+
       <div class="col-md-9 col-sm-8 col-xs-12">
         <div class="row filterArea">
           <div class="col-xs-6">
@@ -115,150 +80,24 @@
             </div>
           </div>
         </div>
+
         <div class="row">
-          <div class="col-sm-4 col-xs-12">
-            <div class="productBox">
-              <div class="productImage clearfix">
-                <%= image_tag("img/products/products-01.jpg", :alt => "products-img") %>
+          <% @products.each do |product| %>
+            <%= link_to potepan_product_path(product) do %>
+              <div class="col-sm-4 col-xs-12">
+                <div class="productBox">
+                  <div class="productImage clearfix">
+                    <%= image_tag(product.images.first.attachment, :alt => "products-img") %>                 
+                  </div>
+                  <div class="productCaption clearfix">
+                    <h5><%= product.name %></h5>
+                    <h3><%= product.display_price %></h3>
+                  </div>
+                </div>
               </div>
-              <div class="productCaption clearfix">
-                <a href="single_product.html">
-                  <h5>Nike Sportswear</h5>
-                </a>
-                <h3>199円</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-xs-12">
-            <div class="productBox">
-              <div class="productImage clearfix">
-                <%= image_tag("img/products/products-02.jpg", :alt => "products-img") %>
-              </div>
-              <div class="productCaption clearfix">
-                <a href="single_product.html">
-                  <h5>Dip Dyed Sweater</h5>
-                </a>
-                <h3>249円</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-xs-12">
-            <div class="productBox">
-              <div class="productImage clearfix">
-                <%= image_tag("img/products/products-03.jpg", :alt => "products-img") %>->
-              </div>
-              <div class="productCaption clearfix">
-                <a href="single_product.html">
-                  <h5>Scarf Ring Corner</h5>
-                </a>
-                <h3>179円</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-xs-12">
-            <div class="productBox">
-              <div class="productImage clearfix">
-                <%= image_tag("img/products/products-04.jpg", :alt => "products-img") %>
-              </div>
-              <div class="productCaption clearfix">
-                <a href="single_product.html">
-                  <h5>Sun Buddies</h5>
-                </a>
-                <h3>149円</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-xs-12">
-            <div class="productBox">
-              <div class="productImage clearfix">
-                <%= image_tag("img/products/products-05.jpg", :alt => "products-img") %>
-              </div>
-              <div class="productCaption clearfix">
-                <a href="single_product.html">
-                  <h5>Nike Sportswear</h5>
-                </a>
-                <h3>199円</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-xs-12">
-            <div class="productBox">
-              <div class="productImage clearfix">
-                <%= image_tag("img/products/products-06.jpg", :alt => "products-img") %>
-              </div>
-              <div class="productCaption clearfix">
-                <a href="single_product.html">
-                  <h5>Dip Dyed Sweater</h5>
-                </a>
-                <h3>249円</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-xs-12">
-            <div class="productBox">
-              <div class="productImage clearfix">
-                <%= image_tag("img/products/products-07.jpg", :alt => "products-img") %>
-              </div>
-              <div class="productCaption clearfix">
-                <a href="single_product.html">
-                  <h5>Scarf Ring Corner</h5>
-                </a>
-                <h3>179円</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-xs-12">
-            <div class="productBox">
-              <div class="productImage clearfix">
-                <%= image_tag("img/products/products-08.jpg", :alt => "products-img") %>
-              </div>
-              <div class="productCaption clearfix">
-                <a href="single_product.html">
-                  <h5>Sun Buddies</h5>
-                </a>
-                <h3>149円</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-xs-12">
-            <div class="productBox">
-              <div class="productImage clearfix">
-                <%= image_tag("img/products/products-09.jpg", :alt => "products-img") %>
-              </div>
-              <div class="productCaption clearfix">
-                <a href="single_product.html">
-                  <h5>Nike Sportswear</h5>
-                </a>
-                <h3>199円</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-xs-12">
-            <div class="productBox">
-              <div class="productImage clearfix">
-                <%= image_tag("img/products/products-10.jpg", :alt => "products-img") %>
-              </div>
-              <div class="productCaption clearfix">
-                <a href="single_product.html">
-                  <h5>Dip Dyed Sweater</h5>
-                </a>
-                <h3>249円</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-xs-12">
-            <div class="productBox">
-              <div class="productImage clearfix">
-                <%= image_tag("img/products/products-11.jpg", :alt => "products-img") %>
-              </div>
-              <div class="productCaption clearfix">
-                <a href="single_product.html">
-                  <h5>Scarf Ring Corner</h5>
-                </a>
-                <h3>179円</h3>
-              </div>
-            </div>
-          </div>
+            <% end %>
+          <% end %>
+ 
           <div class="col-sm-4 col-xs-12">
             <div class="productBox">
               <div class="productImage clearfix">
@@ -273,6 +112,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
