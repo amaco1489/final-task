@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Potepan::Products", type: :system do
   describe "GET #show" do
-    let(:product) { create(:product) }
+    let(:product) { create(:product, taxon_ids: [taxon_1.id, taxon_2.id]) }
     let(:image) { create(:image) }
     # 画像URLの取得が上手くいかない問題への対応
     # https://mng-camp.potepan.com/curriculums/document-for-final-task-2#notes-of-image-test
@@ -10,6 +10,8 @@ RSpec.describe "Potepan::Products", type: :system do
       filename = image.attachment_blob.filename
       "#{filename.base}#{filename.extension_with_delimiter}"
     end
+    let(:taxon_1) { create(:taxon) }
+    let(:taxon_2) { create(:taxon) }
 
     before do
       product.images << image
@@ -56,6 +58,11 @@ RSpec.describe "Potepan::Products", type: :system do
     it "ヘッダーのロゴからtopページへ遷移すること" do
       click_on "ロゴ"
       expect(current_path).to eq potepan_index_path
+    end
+
+    it "一覧ページへ戻るリンクからカテゴリーページへ遷移すること" do
+      click_on "一覧ページへ戻る"
+      expect(current_path).to eq potepan_category_path(product.taxon_ids.first)
     end
   end
 end

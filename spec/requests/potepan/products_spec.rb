@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "Potepan::Products", type: :request do
   describe "GET #show" do
-    let(:product) { create(:product) }
+    let(:product) { create(:product, taxon_ids: taxon.id) }
     let(:image) { create(:image) }
+    let(:taxon) { create(:taxon) }
     # 画像URLの取得が上手くいかない問題への対応
     # https://mng-camp.potepan.com/curriculums/document-for-final-task-2#notes-of-image-test
     let(:product_image_filename) do
