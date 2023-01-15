@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Potepan::Products", type: :system do
-  describe "GET #show" do
+  describe "商品詳細ページ" do
     let(:product) { create(:product, taxons: [taxon_1, taxon_2]) }
     let(:image) { create(:image) }
     # 画像URLの取得が上手くいかない問題への対応
@@ -16,7 +16,6 @@ RSpec.describe "Potepan::Products", type: :system do
     before do
       product.images << image
       visit potepan_product_path(product.id)
-      ActiveStorage::Current.host = page.current_host
     end
 
     it "タイトルに商品名とストア名が表示されていること" do

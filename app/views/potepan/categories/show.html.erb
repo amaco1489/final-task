@@ -1,17 +1,14 @@
 <% content_for(:title, @taxon.name) %>
 <%= render "shared/page_header", sub_title: @taxon.name %>
-<!-- MAIN CONTENT SECTION -->
 <section class="mainContent clearfix productsContent">
   <div class="container">
     <div class="row">
       <div class="col-md-3 col-sm-4 col-xs-12 sideBar">
-
         <div class="panel panel-default">
           <div class="panel-heading">商品カテゴリー</div>
           <div class="panel-body">
             <div class="collapse navbar-collapse navbar-ex1-collapse navbar-side-collapse">
               <ul class="nav navbar-nav side-nav">
-                
                 <% @taxonomies.each do |taxonomy| %>
                   <li>
                     <%= link_to "javascript:;", "data-toggle": :"collapse", "data-target": :"#taxonomy_#{taxonomy.id}" do %>
@@ -29,12 +26,10 @@
                     </ul>
                   </li>
                 <% end %>
-        
               </ul>
             </div>
           </div>
         </div>
-
         <div class="panel panel-default filterNormal">
           <div class="panel-heading">色から探す</div>
           <div class="panel-body">
@@ -59,7 +54,6 @@
           </div>
         </div>
       </div>
-
       <div class="col-md-9 col-sm-8 col-xs-12">
         <div class="row filterArea">
           <div class="col-xs-6">
@@ -78,14 +72,13 @@
             </div>
           </div>
         </div>
-
         <div class="row">
           <% @products.each do |product| %>
             <%= link_to potepan_product_path(product.id) do %>
               <div class="col-sm-4 col-xs-12">
                 <div class="productBox">
                   <div class="productImage clearfix">
-                    <%= image_tag(product.images.first.attachment, :alt => "products-img") %>                 
+                    <%= image_tag(product.images.first.attachment(:product), :alt => "products-img") %>                 
                   </div>
                   <div class="productCaption clearfix">
                     <h5><%= product.name %></h5>
@@ -96,7 +89,6 @@
             <% end %>
           <% end %>
         </div>
-
       </div>
     </div>
   </div>

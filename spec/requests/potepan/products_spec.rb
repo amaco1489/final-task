@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Potepan::Products", type: :request do
-  describe "GET #show" do
+  describe "商品詳細ページ" do
     let(:product) { create(:product, taxons: [taxon]) }
     let(:image) { create(:image) }
     let(:taxon) { create(:taxon) }
