@@ -29,9 +29,10 @@ RSpec.describe "Potepan::Categories", type: :system do
     end
 
     it "ページヘッダーにカテゴリー名とShopが表示されていること" do
-      within ".pageHeader"
-      expect(page).to have_content taxon_1.name
-      expect(page).to have_content "Shop"
+      within ".pageHeader" do
+        expect(page).to have_content taxon_1.name
+        expect(page).to have_content "Shop"
+      end
     end
 
     it "サイドバーに全ての大カテゴリー名が表示されていること" do
@@ -50,10 +51,16 @@ RSpec.describe "Potepan::Categories", type: :system do
     end
 
     it "選択されたカテゴリーの商品情報が表示されていること" do
-      within ".productBox" do
+      within ".products-area" do
         expect(page).to have_content product_1.name
         expect(page).to have_content product_1.display_price
         expect(page).to have_selector "img[src$='#{product_image_filename}']"
+      end
+    end
+
+    it "サイドバーの商品数と表示されている商品数が一致していること" do
+      within ".products-area" do
+        expect(page).to have_selector ".productBox", count: taxon_1.products.count
       end
     end
 
@@ -61,13 +68,13 @@ RSpec.describe "Potepan::Categories", type: :system do
       expect(page).not_to have_content product_2.name
     end
 
-    it "サイドバーのカテゴリーリンクから選択されたカテゴリー一覧ページへ遷移できるか" do
+    it "サイドバーのカテゴリーリンクから選択されたカテゴリー一覧ページへ遷移できること" do
       click_on "#{taxon_1.name}(#{taxon_1.products.count})"
       expect(current_path).to eq potepan_category_path(taxon_1.id)
     end
 
-    it "商品名リンクから商品詳細ページへ遷移できるか" do
-      click_on "#{product_1.name}"
+    it "商品名リンクから商品詳細ページへ遷移できること" do
+      click_on product_1.name
       expect(current_path).to eq potepan_product_path(product_1.id)
     end
   end
