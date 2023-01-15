@@ -6,3 +6,4 @@ class Potepan::CategoriesController < ApplicationController
       @taxon.products.preload(master: [:default_price, images: { attachment_attachment: :blob }])
   end
 end
+
