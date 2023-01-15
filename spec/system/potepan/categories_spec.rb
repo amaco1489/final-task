@@ -8,19 +8,21 @@ RSpec.describe "Potepan::Categories", type: :system do
       create(:taxon, name: "Shirts", taxonomy: taxonomy_1, parent: taxon_0, products: [product_1])
     end
     let(:product_1) { create(:product) }
-    let(:image) { create(:image) }
+    let(:image_1) { create(:image) }
     # 画像URLの取得が上手くいかない問題への対応
     # https://mng-camp.potepan.com/curriculums/document-for-final-task-2#notes-of-image-test
     let(:product_image_filename) do
-      filename = image.attachment_blob.filename
+      filename = image_1.attachment_blob.filename
       "#{filename.base}#{filename.extension_with_delimiter}"
     end
     let(:taxonomy_2) { create(:taxonomy, name: "Brand") }
     let!(:taxon_2) { create(:taxon, name: "Solidus", taxonomy: taxonomy_2, products: [product_2]) }
     let(:product_2) { create(:product) }
+    let(:image_2) { create(:image) }
 
     before do
-      product_1.images << image
+      product_1.images << image_1
+      product_2.images << image_2
       visit potepan_category_path(taxon_1.id)
     end
 
@@ -69,8 +71,8 @@ RSpec.describe "Potepan::Categories", type: :system do
     end
 
     it "サイドバーのカテゴリーリンクから選択されたカテゴリー一覧ページへ遷移できること" do
-      click_on "#{taxon_1.name}(#{taxon_1.products.count})"
-      expect(current_path).to eq potepan_category_path(taxon_1.id)
+      click_on "#{taxon_2.name}(#{taxon_2.products.count})"
+      expect(current_path).to eq potepan_category_path(taxon_2.id)
     end
 
     it "商品名リンクから商品詳細ページへ遷移できること" do
