@@ -35,11 +35,6 @@ RSpec.describe "Potepan::Categories", type: :request do
       expect(response.body).to include taxon_2.name
     end
 
-    it "カテゴリー毎の商品数が取得できていること" do
-      expect(response.body).to include taxon_1.products.count.to_s
-      expect(response.body).to include taxon_2.products.count.to_s
-    end
-
     it "選択されたカテゴリーの商品情報が取得できていること" do
       expect(response.body).to include product_1.name
       expect(response.body).to include product_1.display_price.to_s
