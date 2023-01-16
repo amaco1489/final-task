@@ -21,7 +21,7 @@ RSpec.describe "Potepan::Categories", type: :request do
       get potepan_category_path(taxon_1.id)
     end
 
-    it "レスポンスが200ステータスであること" do
+    it "HTTPのステータスコードが200であること" do
       expect(response).to have_http_status 200
     end
 

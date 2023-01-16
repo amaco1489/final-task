@@ -17,7 +17,7 @@ RSpec.describe "Potepan::Products", type: :request do
       get potepan_product_path(product.id)
     end
 
-    it "レスポンスが200ステータスであること" do
+    it "HTTPのステータスコードが200であること" do
       expect(response).to have_http_status 200
     end
 
