@@ -1,5 +1,5 @@
 <% content_for(:title, @product.name) %>
-<%= render "shared/page_header", product_name: @product.name %>
+<%= render "shared/page_header", page_header_title: @product.name %>
 <section class="mainContent clearfix">
   <div class="container">    
     <div class="row singleProduct">
@@ -36,7 +36,7 @@
           <div class="media-body">
             <ul class="list-inline">
               <li>
-                <%= link_to potepan_product_grid_left_sidebar_path do %>
+                <%= link_to potepan_category_path(@product.taxons.first.id) do %>
                   <i class="fa fa-reply" aria-hidden="true"></i>一覧ページへ戻る
                 <% end %>
               </li>
