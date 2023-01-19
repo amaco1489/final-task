@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Potepan::Products", type: :model do
+RSpec.describe Spree::Product, type: :model do
   describe "#related_products" do
     let(:taxons) { create_list(:taxon, 3) }
     let(:product) { create(:product, taxons: [taxons[0], taxons[1]]) }
