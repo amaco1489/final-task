@@ -11,7 +11,7 @@ RSpec.describe "Potepan::Products", type: :system do
       filename = image.attachment_blob.filename
       "#{filename.base}#{filename.extension_with_delimiter}"
     end
-    let!(:related_products) { create_list(:product, 5, taxons: [taxons[0]]) }
+    let(:related_products) { create_list(:product, 5, taxons: [taxons[0]]) }
 
     before do
       product.images << image
