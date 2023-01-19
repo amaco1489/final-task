@@ -19,7 +19,7 @@ RSpec.describe "Potepan::Products", type: :system do
 
     before do
       product.images << image
-      related_products.each_with_index do |related_product|
+      related_products.each do |related_product|
         related_product.images << create(:image)
       end
       visit potepan_product_path(product.id)
