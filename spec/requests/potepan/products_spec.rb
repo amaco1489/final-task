@@ -11,7 +11,11 @@ RSpec.describe "Potepan::Products", type: :request do
       filename = image.attachment_blob.filename
       "#{filename.base}#{filename.extension_with_delimiter}"
     end
-    let(:related_products) { create_list(:product, 5, taxons: [taxon]) }
+    let(:related_products) do
+      [15, 16, 17, 18, 19].map do |price|
+        create(:product, taxons: [taxon], price: price)
+      end
+    end
 
     before do
       product.images << image
@@ -39,8 +43,9 @@ RSpec.describe "Potepan::Products", type: :request do
       end
     end
 
-    it "5個目の関連商品情報(名前)が含まれていないこと" do
+    it "5個目の関連商品情報が含まれていないこと" do
       expect(response.body).not_to include related_products[4].name
+      expect(response.body).not_to include related_products[4].display_price.to_s
     end
   end
 end

@@ -11,11 +11,15 @@ RSpec.describe "Potepan::Products", type: :system do
       filename = image.attachment_blob.filename
       "#{filename.base}#{filename.extension_with_delimiter}"
     end
-    let(:related_products) { create_list(:product, 5, taxons: [taxons[0]]) }
+    let(:related_products) do
+      [15, 16, 17, 18, 19].map do |price|
+        create(:product, taxons: [taxons[0]], price: price)
+      end
+    end
 
     before do
       product.images << image
-      related_products.each do |related_product|
+      related_products.each_with_index do |related_product|
         related_product.images << create(:image)
       end
       visit potepan_product_path(product.id)
@@ -71,9 +75,10 @@ RSpec.describe "Potepan::Products", type: :system do
       within ".productsContent" do
         related_products[0..3].all? do |related_product|
           expect(page).to have_content related_product.name
-          expect(page).to have_content related_product.display_price.to_s
+          expect(page).to have_content related_product.display_price
         end
         expect(page).not_to have_content related_products[4].name
+        expect(page).not_to have_content related_products[4].display_price
       end
     end
 
