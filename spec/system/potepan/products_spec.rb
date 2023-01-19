@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "Potepan::Products", type: :system do
   describe "商品詳細ページ" do
-    let(:product) { create(:product, taxons: [taxon_1, taxon_2]) }
+    let(:taxons) { create_list(:taxon, 2) }
+    let(:product) { create(:product, taxons: taxons) }
     let(:image) { create(:image) }
     # 画像URLの取得が上手くいかない問題への対応
     # https://mng-camp.potepan.com/curriculums/document-for-final-task-2#notes-of-image-test
@@ -10,11 +11,13 @@ RSpec.describe "Potepan::Products", type: :system do
       filename = image.attachment_blob.filename
       "#{filename.base}#{filename.extension_with_delimiter}"
     end
-    let(:taxon_1) { create(:taxon) }
-    let(:taxon_2) { create(:taxon) }
+    let!(:related_products) { create_list(:product, 5, taxons: [taxons[0]]) }
 
     before do
       product.images << image
+      related_products.each do |related_product|
+        related_product.images << create(:image)
+      end
       visit potepan_product_path(product.id)
     end
 
@@ -61,7 +64,26 @@ RSpec.describe "Potepan::Products", type: :system do
 
     it "一覧ページへ戻るリンクからカテゴリーページへ遷移できること" do
       click_on "一覧ページへ戻る"
-      expect(current_path).to eq potepan_category_path(product.taxons.first.id)
+      expect(current_path).to eq potepan_category_path(product.taxons[0].id)
+    end
+
+    it "関連商品情報（4個のみ）が表示されていること" do
+      within ".productsContent" do
+        related_products[0..3].all? do |related_product|
+          expect(page).to have_content related_product.name
+          expect(page).to have_content related_product.display_price.to_s
+        end
+        expect(page).not_to have_content related_products[4].name
+      end
+    end
+
+    it "関連商品名リンクからそれぞれの商品詳細ページへ遷移できること" do
+      within ".productsContent" do
+        related_products[0..3].all? do |related_product|
+          click_on related_product.name
+          expect(current_path).to eq potepan_product_path(related_product.id)
+        end
+      end
     end
   end
 end

@@ -39,7 +39,7 @@ RSpec.describe "Potepan::Products", type: :request do
       end
     end
 
-    it "5個目の関連商品情報(名前)が表示されていないこと" do
+    it "5個目の関連商品情報(名前)が含まれていないこと" do
       expect(response.body).not_to include related_products[4].name
     end
   end

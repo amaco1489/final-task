@@ -41,7 +41,7 @@ RSpec.describe "Potepan::Categories", type: :request do
       expect(response.body).to include product_image_filename
     end
 
-    it "選択されていないカテゴリーの商品情報(名前)が表示されていないこと" do
+    it "選択されていないカテゴリーの商品情報(名前)が含まれていないこと" do
       expect(response.body).not_to include product_2.name
     end
   end
